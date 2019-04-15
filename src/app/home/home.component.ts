@@ -30,6 +30,10 @@ export class HomeComponent implements OnInit {
     this.authenticationService.getStatus().subscribe((session) => {
       this.userService.getUserById(session.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
+        if (this.user.friends) {
+          this.user.friends = Object.values(this.user.friends);
+          console.log(this.user);
+        }
       }, (error) => {
         console.log(error);
       });
