@@ -1,3 +1,4 @@
+import { AuthenticationGuard } from './services/authentication.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -7,10 +8,10 @@ import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'home', component: HomeComponent},
+  {path: 'home', component: HomeComponent, canActivate: [AuthenticationGuard]},
   {path: 'login', component: LoginComponent},
-  {path: 'conversation/:uid', component: ConversationComponent},
-  {path: 'profile', component: ProfileComponent}
+  {path: 'conversation/:uid', component: ConversationComponent, canActivate: [AuthenticationGuard]},
+  {path: 'profile', component: ProfileComponent, canActivate: [AuthenticationGuard]}
 ];
 
 @NgModule({

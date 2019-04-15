@@ -10,10 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ConversationComponent implements OnInit {
   friendId: any;
-  friends: User[];
   friend: User;
-  price = 78.354362532632;
-  today: any = Date.now();
   constructor(private activatedRoute: ActivatedRoute,
               private userService: UserService) {
     /*Recuperar UID por el Parametro de la URL*/
@@ -21,14 +18,12 @@ export class ConversationComponent implements OnInit {
 
     console.log(this.friendId);
 
-    this.friends = userService.getFriends();
-
-    this.friend = this.friends.find( (record) => {
-      return record.uid == this.friendId;
-    } );
-    console.log(this.friend);
+    userService.getUserById(this.friendId).valueChanges().subscribe((data: User) => {
+      this.friend = data;
+    }, (error) => {
+      console.log(error);
+    });
   }
-
   ngOnInit() {
   }
 
