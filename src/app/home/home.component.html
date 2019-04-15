@@ -27,7 +27,7 @@
       <div class="col">
         <input type="text" class="form-control" placeholder="Buscar Amigo" [(ngModel)]="query">
       </div>
-      <div class="col-md-auto">
+      <div class="col-md-auto" (click)="open(content)">
         <img src="assets/img/logo_live_add.png" class="icon">
       </div>
     </div>
@@ -43,3 +43,25 @@
   </div>
 
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Tienes una Solicitud</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <div class="row">
+        <b>Ingresa el Email de tu amigo</b>
+        <input type="email" class="form-control" placeholder="Email" [(ngModel)]="friendEmail" (keyup.enter)="sendRequest()">
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="sendRequest()">Guardar</button>
+    </div>
+  </ng-template>
+    
+  <hr>
+  
+  <pre>{{closeResult}}</pre>

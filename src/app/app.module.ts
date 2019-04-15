@@ -7,6 +7,9 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BootstrapModalModule } from 'ng2-bootstrap-modal';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +21,7 @@ import { Routes } from '@angular/router';
 import { MenuComponent } from './menu/menu.component';
 import { SearchPipe } from './pipes/search';
 import { environment } from '../environments/environment';
+import { RequestComponent } from './modals/request/request.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { environment } from '../environments/environment';
     ConversationComponent,
     ProfileComponent,
     MenuComponent,
-    SearchPipe
+    SearchPipe,
+    RequestComponent
   ],
   imports: [
     BrowserModule,
@@ -37,9 +42,13 @@ import { environment } from '../environments/environment';
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features,
     AngularFireStorageModule, // imports firebase/storage only needed for storage features
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    ImageCropperModule,
+    NgbModule,
+    BootstrapModalModule.forRoot({container: document.body})
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [RequestComponent]
 })
 export class AppModule { }

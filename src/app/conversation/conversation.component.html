@@ -1,9 +1,53 @@
-<p>
-  {{friend | json}}
-</p>
-<p>
-  {{price | number: '1.2-2'}}
-</p>
-<p>
-  {{today | date: 'fullDate'}}
-</p>
+<div class="conversationContainer bluewhitebg " [ngClass]="{'shaker': shake}">
+  <div class="row">
+    <div class="col-sm-3 maxwi300">
+      <div id="conversationSidebar">
+        <div *ngIf="friend" class="vh30">
+          <div class="avatarFrameonline">
+            <img src="{{friend.avatar}}" class="avatarImage img-fluid">
+          </div>
+        </div>
+        <div class="vh30"></div>
+        <div *ngIf="user" class="vh25">
+          <div class="avatarFrameonline">
+            <img src="{{user.avatar}}" class="avatarImage img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="friend" class="col-sm-9">
+      <br />
+      <span class="friendName">{{friend.nick}} - {{friend.subnick}}</span> {{friend.status}}
+      <hr />
+      <div class="vh55 overscroll pabo10" id="messageArea">
+        <div class="messageGroup" *ngFor="let m of conversation">
+          <b>{{getUserNickById(m.sender)}}</b> dice: <br>
+          <span>{{m.text}}</span>
+        </div>
+      </div>
+      <div class="messageControlsContainer">
+        <textarea [(ngModel)]="textMessage" (keyup.enter)="sendMessage()" class="form-control" cols="30"
+          rows="5"></textarea>
+        <div id="messageToolBar">
+          <div class="item">
+            <img src="assets/img/icons/regular_smile.gif" class="tool">
+            <i name="caret-down"></i>
+          </div>
+          <div class="item">
+            <img src="assets/img/icons/wink_smile.gif" class="tool">
+            <i name="caret-down"></i>
+          </div>
+          <div class="item" (click)="sendZumbido()">
+            <img src="assets/img/zumbido.png" class="tool">
+          </div>
+
+          <a class="btn btn-primary btn-sm marri10" accept="image/*">Enviar</a>
+          <label class="custom-file-upload">
+            <input type="file">
+            <i name="image"></i> Seleccionar Imagen
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
