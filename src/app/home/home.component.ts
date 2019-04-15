@@ -76,7 +76,7 @@ export class HomeComponent implements OnInit {
       receiver_email: this.friendEmail,
       sender: this.user.uid,
       status: 'pending'
-    }
+    };
     this.requestService.createRequest(request).then( () => {
       alert('Solicitud Enviada');
     }).catch( (error) => {
