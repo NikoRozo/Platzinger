@@ -4,6 +4,8 @@
 /dist
 /tmp
 /out-tsc
+/Platzinger-win32-x64
+/.firebase
 # Only exists if Bazel was run
 /bazel-out
 
